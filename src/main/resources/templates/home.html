@@ -54,6 +54,8 @@
             if(btn.value === "="){
                 let res = document.getElementById("result").value;
                 let action;
+                let count = (res.match(/\+/g) || []).length + (res.match(/\-/g) || []).length + (res.match(/\*/g) || []).length + (res.match(/\//g) || []).length;
+                console.log(count)
                 if (res.indexOf('-') > -1){
                     res = res.split('-');
                     action = "-";
@@ -70,7 +72,7 @@
                     res = res.split('/');
                     action = "/";
                 }
-                if(res.length > 3){
+                if(count > 1){
                     alert("Ввели больше 1 арифмитеческого знака");
                     document.getElementById("result").value = "";
                 } else {
@@ -91,7 +93,7 @@
                     $.ajax({
                         url: url,
                         success(data){
-                            alert(data);
+                            document.getElementById("result").value = data;
                         }
                     });
                 }
