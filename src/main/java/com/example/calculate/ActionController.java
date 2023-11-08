@@ -10,6 +10,10 @@ public class ActionController {
     public ActionController(HomeService homeService) {
         this.homeService = homeService;
     }
+    @GetMapping(path = "/calculator")
+    public String welcome(){
+        return homeService.welcome();
+    }
     @GetMapping(path = "/calculator/plus")
     public String plus(@RequestParam("num1") int num1, @RequestParam("num2") int num2){
         return homeService.plus(num1,num2);

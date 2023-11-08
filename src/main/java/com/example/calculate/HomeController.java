@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-    @GetMapping("/calculator")
+    @GetMapping("/")
     public String home(Model model) {
         String title = "Добро пожаловать в калькулятор";
         model.addAttribute("title", title);
