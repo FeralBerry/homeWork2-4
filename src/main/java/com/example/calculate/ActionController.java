@@ -6,46 +6,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ActionController {
-    @GetMapping("/calculator/plus")
-    public String plus(@RequestParam("num1") String num1, @RequestParam("num2") String num2){
-        if(checkNull(num1) && checkNull(num2)){
-            double res = Double.parseDouble(num1) + Double.parseDouble(num2);
-            return String.valueOf(res);
-        }
-        return "1 из параметров не введен";
-
+    private final HomeService homeService;
+    public ActionController(HomeService homeService) {
+        this.homeService = homeService;
     }
-    @GetMapping("/calculator/minus")
-    public String minus(@RequestParam("num1") String num1, @RequestParam("num2") String num2){
-        if(checkNull(num1) && checkNull(num2)) {
-            double res = Double.parseDouble(num1) - Double.parseDouble(num2);
-            return String.valueOf(res);
-        }
-        return "1 из параметров не введен";
+    @GetMapping(path = "/calculator/plus")
+    public String plus(@RequestParam("num1") int num1, @RequestParam("num2") int num2){
+        return homeService.plus(num1,num2);
     }
-    @GetMapping("/calculator/multiply")
-    public String multiply(@RequestParam("num1") String num1, @RequestParam("num2") String num2){
-        if(checkNull(num1) && checkNull(num2)) {
-            double res = Double.parseDouble(num1) * Double.parseDouble(num2);
-            return String.valueOf(res);
-        }
-        return "1 из параметров не введен";
+    @GetMapping(path = "/calculator/minus")
+    public String minus(@RequestParam("num1") int num1, @RequestParam("num2") int num2){
+        return homeService.minus(num1,num2);
     }
-    @GetMapping("/calculator/divide")
-    public String divide(@RequestParam("num1") String num1, @RequestParam("num2") String num2){
-        if(checkNull(num1) && checkNull(num2)) {
-            if(Integer.parseInt(num2) != 0){
-                double res = Double.parseDouble(num1) / Double.parseDouble(num2);
-                return String.valueOf(res);
-            }
-            return "Делить на 0 нельзя";
-        }
-        return "1 из параметров не введен";
+    @GetMapping(path = "/calculator/multiply")
+    public String multiply(@RequestParam("num1") int num1, @RequestParam("num2") int num2){
+        return homeService.multiply(num1,num2);
     }
-    private Boolean checkNull(String str){
-        if (str == null){
-            return false;
-        }
-        return true;
+    @GetMapping(path = "/calculator/divide")
+    public String divide(@RequestParam("num1") int num1, @RequestParam("num2") int num2){
+        return String.valueOf(homeService.divide(num1,num2));
     }
 }

@@ -40,7 +40,7 @@
         </tr>
         <tr>
             <td><input type="button" onclick="addCharacter(this)" class="button" value="0"></td>
-            <td><input type="button" onclick="addCharacter(this)" class="button" value="."></td>
+            <td><input type="button" onclick="addCharacter(this)" class="button" value="с"></td>
             <td><input type="button" onclick="addCharacter(this)" class="button" value="="></td>
             <td><input type="button" onclick="addCharacter(this)" class="button" value="+"></td>
         </tr>
@@ -55,7 +55,6 @@
                 let res = document.getElementById("result").value;
                 let action;
                 let count = (res.match(/\+/g) || []).length + (res.match(/\-/g) || []).length + (res.match(/\*/g) || []).length + (res.match(/\//g) || []).length;
-                console.log(count)
                 if (res.indexOf('-') > -1){
                     res = res.split('-');
                     action = "-";
